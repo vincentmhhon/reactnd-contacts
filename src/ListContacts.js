@@ -17,13 +17,16 @@ class ListContacts extends Component {
     this.setState({ query: query.trim() })
   }
   render() {
+    const { contacts, onDeleteContact } = this.props
+    const { query } = this.state
+
     let showContacts 
-    if (this.state.query) {
-      const match = new RegExp(escapeStringRegexp(this.state.query), 'i')
-      showContacts = this.props.contacts.filter((contact) => match.test(contact.name))
+    if (query) {
+      const match = new RegExp(escapeStringRegexp(query), 'i')
+      showContacts = contacts.filter((contact) => match.test(contact.name))
     }
     else {
-      showContacts = this.props.contacts
+      showContacts = contacts
     }
     return (
       <div className='list-contacts'>
@@ -46,7 +49,7 @@ class ListContacts extends Component {
                 <p>{contact.name}</p>
                 <p>{contact.email}</p>
               </div>
-              <button onClick={() => this.props.onDeleteContact(contact)} className='contact-remove'>
+              <button onClick={() => onDeleteContact(contact)} className='contact-remove'>
                 Remove
               </button>
             </li>
