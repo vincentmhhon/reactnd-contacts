@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import escapeStringRegexp from 'escape-string-regexp'
+import { Link } from 'react-router-dom'
 
 class ListContacts extends Component {
   
@@ -43,11 +44,10 @@ class ListContacts extends Component {
             value={this.state.query}
             onChangeCapture={(event) => this.updateQuery(event.target.value)}
           />
-          <a 
-            href='#create'
-            onClick={this.props.onNavigate}
+          <Link 
+            to='/create'
             className='add-contact'
-          >Add Contact</a>
+          >Add Contact</Link>
         </div>
 
         {showContacts.length !== contacts.length && (
